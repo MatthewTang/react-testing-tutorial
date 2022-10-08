@@ -1,9 +1,19 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { fireEvent, render, screen } from '@testing-library/react';
+import Counter from './components/Counter';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+
+
+//test block
+test("increments counter", () => {
+
+  render(<Counter />);
+
+  const counter = screen.getByTestId('count');
+  const incrementBtn = screen.getByTestId('increment');
+
+  fireEvent.click(incrementBtn);
+
+  expect(counter).toHaveTextContent('1');
+
+})
+
